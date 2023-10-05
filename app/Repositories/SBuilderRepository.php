@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Models\SBuilder;
-use App\Models\SBuilderPlugin;
+use App\Models\SBuilder\SBuilder;
 use Illuminate\Support\Facades\DB;
 
 class SBuilderRepository

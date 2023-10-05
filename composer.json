@@ -1,23 +1,30 @@
 {
     "name": "manzadey/sbuilder-laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "The skeleton application for the Laravel framework for SBuilder project.",
     "keywords": [
         "laravel",
-        "framework"
+        "framework",
+        "sbuilder"
     ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
         "ext-dom": "*",
+        "dedoc/scramble": "^0.8.4",
+        "doctrine/dbal": "^3.7",
         "guzzlehttp/guzzle": "^7.2",
         "kirschbaum-development/eloquent-power-joins": "^3.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "league/flysystem-ftp": "3.0",
+        "league/flysystem-ftp": "^3.16",
+        "predis/predis": "^2.2",
+        "sentry/sentry-laravel": "^3.8",
+        "spatie/laravel-sitemap": "^6.3",
         "symfony/css-selector": "^6.3",
-        "symfony/dom-crawler": "^6.3"
+        "symfony/dom-crawler": "^6.3",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

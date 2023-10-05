@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpFoundation\Response;
-use function Psy\debug;
 
 class AuthenticateOnceWithBasicAuth
 {
@@ -23,7 +19,13 @@ class AuthenticateOnceWithBasicAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->exists('logout')) {
+        if($this->checkReferrer($request->header('referer'))) {
+            return $next($request);
+        }
+
+        $hasBasicAuth = isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
+
+        if($hasBasicAuth && $request->exists('logout')) {
             unset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
 
             return redirect(
@@ -31,24 +33,11 @@ class AuthenticateOnceWithBasicAuth
             );
         }
 
-        if(!isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
+        if(!$hasBasicAuth) {
             $this->authErrorResponse();
         }
 
-        $user = User::query()
-            ->where(
-                column: 'u_email',
-                operator: '=',
-                value: $_SERVER['PHP_AUTH_USER'],
-            )
-            ->where(
-                column: 'u_pass',
-                operator: '=',
-                value: md5(string: $_SERVER['PHP_AUTH_PW'])
-            )
-            ->exists();
-
-        if(!$user) {
+        if(!$this->checkCredential()) {
             $this->authErrorResponse();
         }
 
@@ -64,5 +53,26 @@ class AuthenticateOnceWithBasicAuth
                 'WWW-Authenticate' => 'Basic realm="Restricted Area"',
             ]
         );
+    }
+
+    private function checkCredential() : bool
+    {
+        $user = config('auth.basic_auth.user');
+        $pass = config('auth.basic_auth.pass');
+
+        if(!empty($user) && !empty($pass)) {
+            return $user === $_SERVER['PHP_AUTH_USER'] && $pass === $_SERVER['PHP_AUTH_PW'];
+        }
+
+        return true;
+    }
+
+    private function checkReferrer(?string $url) : bool
+    {
+        if($url === null) {
+            return false;
+        }
+
+        return parse_url($url, PHP_URL_PATH) === '/docs/api';
     }
 }
