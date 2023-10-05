@@ -76,4 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response;
         }
     };
+
+    document.addEventListener('clear_basket', (e) => basketActions.clear(e.detail?.b_url));
 });
