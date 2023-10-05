@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model'  => App\Models\User::class,
+            'model'  => \App\Models\SBuilder\User::class,
         ],
 
         // 'users' => [
@@ -111,5 +111,10 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    'basic_auth' => [
+        'user' => (string) env('BASIC_AUTH_USER', 'test'),
+        'pass' => (string) env('BASIC_AUTH_PASS', 'test'),
+    ],
 
 ];

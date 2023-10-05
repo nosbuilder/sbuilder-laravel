@@ -2,19 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Storage;
+namespace App\Services;
 
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 
-class SBuilderStorage extends Storage
+class StorageService extends Storage
 {
-    public static function local() : Filesystem
+    public function make() : static
+    {
+        return new static;
+    }
+
+    public function local() : Filesystem
     {
         return self::disk('sbuilder-local');
     }
 
-    public static function ftp() : Filesystem
+    public function ftp() : Filesystem
     {
         return self::disk('sbuilder-ftp');
     }

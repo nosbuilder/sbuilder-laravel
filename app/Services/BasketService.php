@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Entities\BasketGoodEntity;
-use App\Models\Cart;
+use App\Models\SBuilder\Cart;
 use DOMElement;
 use Symfony\Component\DomCrawler\Crawler;
 
