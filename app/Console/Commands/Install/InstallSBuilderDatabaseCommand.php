@@ -22,7 +22,7 @@ class InstallSBuilderDatabaseCommand extends Command
         $this->replaceKey('username', 'DB_SBUILDER_USERNAME', 'database.connections.mysql-sbuilder.username');
         $this->replaceKey('password', 'DB_SBUILDER_PASSWORD', 'database.connections.mysql-sbuilder.password');
 
-        $this->components->info('Success!');
+        $this->components->info('Success! Check connection: php artisan sbuilder:db-check');
 
         return self::SUCCESS;
     }

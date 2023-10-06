@@ -1,7 +1,7 @@
 {
-    "name": "manzadey/sbuilder-laravel",
+    "name": "amsetere/sbuilder-laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework for SBuilder project.",
+    "description": "The skeleton application for the Laravel framework for SBuilder projects.",
     "keywords": [
         "laravel",
         "framework",
