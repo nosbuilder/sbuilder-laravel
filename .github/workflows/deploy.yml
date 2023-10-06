@@ -1,0 +1,13 @@
+# Deploy to setere server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+      SSH_USER: ${{ secrets.SSH_DEVSERV_USER }}
+      SSH_KEY: ${{ secrets.SSH_DEVSERV_KEY }}
+      SSH_HOST: ${{ secrets.SSH_DEVSERV_HOST }}
