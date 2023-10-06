@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const basketActions = {
+        get hasDebugMode() {
+            return document.URL.indexOf('debug_event_basket') !== -1;
+        },
+
         get redirectUrl() {
             return '/include/basket.php'; // Поменять при необходимости
         },
@@ -14,7 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         getEvent(name, detail) {
-            return new CustomEvent(`${name}_basket`, detail);
+            name += '_basket';
+
+            if (basketActions.hasDebugMode) {
+                console.log(name)
+            }
+
+            return new CustomEvent(name, detail);
         },
 
         async request(id, count, b_url = basketActions.redirectUrl) {
