@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Check;
 
 use App\Console\Commands\Install\InstallSBuilderDatabaseCommand;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class SBuilderDatabaseConnectionCheckCommand extends Command
+class DatabaseConnectionCheckCommand extends Command
 {
     protected $signature = 'sbuilder:db-check';
 

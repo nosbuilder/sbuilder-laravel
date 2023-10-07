@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Check;
 
 use App\Console\Commands\Install\InstallSBuilderFTPCommand;
 use App\Services\StorageService;
 use Exception;
 use Illuminate\Console\Command;
 
-class SBuilderFTPConnectionCheckCommand extends Command
+class FTPConnectionCheckCommand extends Command
 {
     protected $signature = 'sbuilder:ftp-check';
 
