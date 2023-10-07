@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Check;
+namespace App\Console\Commands\SBuilder\DB;
 
-use App\Console\Commands\Install\InstallSBuilderDatabaseCommand;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

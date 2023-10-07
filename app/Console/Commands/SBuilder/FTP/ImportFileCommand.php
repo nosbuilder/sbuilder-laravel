@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Storage;
+namespace App\Console\Commands\SBuilder\FTP;
 
 use App\Services\StorageService;
 use Illuminate\Console\Command;

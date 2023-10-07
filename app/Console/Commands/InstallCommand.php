@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Install;
+namespace App\Console\Commands;
 
+use App\Console\Commands\SBuilder\DB\InstallSBuilderDatabaseCommand;
+use App\Console\Commands\SBuilder\FTP\InstallSBuilderFTPCommand;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Console\KeyGenerateCommand;
 use Illuminate\Foundation\Console\StorageLinkCommand;

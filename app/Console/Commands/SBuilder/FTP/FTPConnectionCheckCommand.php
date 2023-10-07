@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Check;
+namespace App\Console\Commands\SBuilder\FTP;
 
-use App\Console\Commands\Install\InstallSBuilderFTPCommand;
 use App\Services\StorageService;
 use Exception;
 use Illuminate\Console\Command;

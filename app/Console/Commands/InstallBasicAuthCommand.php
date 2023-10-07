@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Install;
+namespace App\Console\Commands;
 
 use App\Traits\EnvironmentKeyReplacementPattern;
 use Illuminate\Console\Command;
