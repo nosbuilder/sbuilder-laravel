@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace App\Console\Commands\Install;
 
-use App\Traits\EnvironmentKeyReplacementPattern;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Console\KeyGenerateCommand;
 use Illuminate\Foundation\Console\StorageLinkCommand;
 
 class InstallCommand extends Command
 {
-    use EnvironmentKeyReplacementPattern;
-
     protected $signature = 'install';
 
     public function handle() : int
