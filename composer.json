@@ -24,7 +24,8 @@
         "spatie/laravel-sitemap": "^6.3",
         "symfony/css-selector": "^6.3",
         "symfony/dom-crawler": "^6.3",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-soap": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -39,7 +40,6 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
     },

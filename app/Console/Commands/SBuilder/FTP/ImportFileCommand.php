@@ -2,17 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Storage;
+namespace App\Console\Commands\SBuilder\FTP;
 
 use App\Services\StorageService;
 use Illuminate\Console\Command;
 
 class ImportFileCommand extends Command
 {
-    protected $signature = 'ftp:import {filepath}';
+    protected $signature = 'sbuilder:ftp-import {filepath}';
 
     public function handle(StorageService $storageService) : int
     {
+        $this->components->info('Start import');
+
         $ftp      = $storageService->ftp();
         $local    = $storageService->local();
         $filepath = str_replace('/', DIRECTORY_SEPARATOR, $this->argument('filepath'));

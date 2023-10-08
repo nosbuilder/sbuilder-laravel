@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Install;
+namespace App\Console\Commands\SBuilder\FTP;
 
 use App\Traits\EnvironmentKeyReplacementPattern;
 use Illuminate\Console\Command;
@@ -11,7 +11,7 @@ class InstallSBuilderFTPCommand extends Command
 {
     use EnvironmentKeyReplacementPattern;
 
-    protected $signature = 'install:sbuilder-ftp {host?} {username?} {password?}';
+    protected $signature = 'sbuilder:ftp-install {host?} {username?} {password?}';
 
     public function handle() : int
     {

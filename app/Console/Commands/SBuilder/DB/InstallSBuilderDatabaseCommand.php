@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Install;
+namespace App\Console\Commands\SBuilder\DB;
 
 use App\Traits\EnvironmentKeyReplacementPattern;
 use Illuminate\Console\Command;
@@ -11,7 +11,7 @@ class InstallSBuilderDatabaseCommand extends Command
 {
     use EnvironmentKeyReplacementPattern;
 
-    protected $signature = 'install:sbuilder-database {host?} {db?} {username?} {password?}';
+    protected $signature = 'sbuilder:db-install {host?} {db?} {username?} {password?}';
 
     public function handle() : int
     {

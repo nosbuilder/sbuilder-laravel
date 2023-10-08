@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands\Storage;
+namespace App\Console\Commands\SBuilder\FTP;
 
 use App\Services\StorageService;
 use Illuminate\Console\Command;
 
 class ExportFilesCommand extends Command
 {
-    protected $signature = 'ftp:export {path?} {--force}';
+    protected $signature = 'sbuilder:ftp-export {path?} {--force}';
 
     public function __construct(
         private readonly StorageService $storageService
@@ -20,6 +20,8 @@ class ExportFilesCommand extends Command
 
     public function handle() : int
     {
+        $this->components->info('Start export');
+
         if($path = $this->argument('path')) {
             if(!$this->storageService->local()->exists($path)) {
                 $this->components->error(sprintf('Path %s not exists', $this->storageService->local()->path($path)));

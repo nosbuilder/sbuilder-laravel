@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\SoapPlugin;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register() : void
     {
-
+        $this->app->bind(
+            abstract: SoapPlugin::class,
+            concrete: static fn() => new SoapPlugin(wsdl: config('sbuilder.url') . '/cms/admin/soap.php?wsdl')
+        );
     }
 
     /**
