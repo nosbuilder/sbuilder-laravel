@@ -13,6 +13,8 @@ class ImportFileCommand extends Command
 
     public function handle(StorageService $storageService) : int
     {
+        $this->components->info('Start import');
+
         $ftp      = $storageService->ftp();
         $local    = $storageService->local();
         $filepath = str_replace('/', DIRECTORY_SEPARATOR, $this->argument('filepath'));

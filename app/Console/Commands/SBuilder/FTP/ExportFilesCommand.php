@@ -20,6 +20,8 @@ class ExportFilesCommand extends Command
 
     public function handle() : int
     {
+        $this->components->info('Start export');
+
         if($path = $this->argument('path')) {
             if(!$this->storageService->local()->exists($path)) {
                 $this->components->error(sprintf('Path %s not exists', $this->storageService->local()->path($path)));

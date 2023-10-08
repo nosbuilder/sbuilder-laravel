@@ -28,8 +28,8 @@ class InstallCommand extends Command
         $this->call(InstallSBuilderDatabaseCommand::class);
         $this->call(InstallSBuilderFTPCommand::class);
         $this->call(InstallBasicAuthCommand::class);
-        $this->call(StorageLinkCommand::class);
         $this->call(InstallSoapKeyCommand::class);
+        $this->call(StorageLinkCommand::class);
 
         return self::SUCCESS;
     }
