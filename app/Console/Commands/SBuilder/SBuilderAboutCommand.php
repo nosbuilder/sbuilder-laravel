@@ -81,7 +81,7 @@ class SBuilderAboutCommand extends Command
         try {
             $this->laravel->make(SoapPlugin::class);
 
-            $this->components->twoColumnDetail('Status', '<fg=red>Success</>');
+            $this->components->twoColumnDetail('Status', '<fg=green>Success</>');
         } catch (\SoapFault $exception) {
             $this->components->twoColumnDetail('Status', '<fg=red>Failed</>');
 
