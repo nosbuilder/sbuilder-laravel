@@ -12,21 +12,20 @@ class PluginController
 {
     public function __invoke(int $pluginId, int $elementId = null) : JsonResponse
     {
-        $pluginId  = (int) abs($pluginId);
-        $elementId = (int) abs($elementId);
-
         $table = DB::connection('mysql-sbuilder')
-            ->table(table: "sb_plugins_$pluginId");
+            ->table(table: sprintf('sb_plugins_%d', (int) abs($pluginId)));
 
         try {
             if($elementId !== null) {
-                $data = $table->where('p_id', '=', $elementId)->first();
+                $data = $table->where('p_id', '=', (int) abs($elementId))->first();
             } else {
                 $data = $table->paginate();
             }
         } catch (QueryException $exception) {
             $data = [
-                'error' => $exception->getMessage(),
+                'error'  => $exception->getMessage(),
+                'code'   => $exception->getCode(),
+                'sql' => $exception->getSql(),
             ];
         }
 
