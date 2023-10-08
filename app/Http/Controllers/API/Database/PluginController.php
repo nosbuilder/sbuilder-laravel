@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Database;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
