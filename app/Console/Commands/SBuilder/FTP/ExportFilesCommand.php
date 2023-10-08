@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class ExportFilesCommand extends Command
 {
-    protected $signature = 'ftp:export {path?} {--force}';
+    protected $signature = 'sbuilder:ftp-export {path?} {--force}';
 
     public function __construct(
         private readonly StorageService $storageService

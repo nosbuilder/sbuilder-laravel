@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class ImportFileCommand extends Command
 {
-    protected $signature = 'ftp:import {filepath}';
+    protected $signature = 'sbuilder:ftp-import {filepath}';
 
     public function handle(StorageService $storageService) : int
     {

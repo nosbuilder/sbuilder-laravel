@@ -6,6 +6,7 @@ namespace App\Console\Commands;
 
 use App\Console\Commands\SBuilder\DB\InstallSBuilderDatabaseCommand;
 use App\Console\Commands\SBuilder\FTP\InstallSBuilderFTPCommand;
+use App\Console\Commands\SBuilder\Soap\InstallSoapKeyCommand;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Console\KeyGenerateCommand;
 use Illuminate\Foundation\Console\StorageLinkCommand;
@@ -28,6 +29,7 @@ class InstallCommand extends Command
         $this->call(InstallSBuilderFTPCommand::class);
         $this->call(InstallBasicAuthCommand::class);
         $this->call(StorageLinkCommand::class);
+        $this->call(InstallSoapKeyCommand::class);
 
         return self::SUCCESS;
     }

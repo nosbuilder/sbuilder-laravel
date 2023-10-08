@@ -5,11 +5,11 @@ namespace App\Console\Commands\SBuilder\Soap;
 use App\Traits\EnvironmentKeyReplacementPattern;
 use Illuminate\Console\Command;
 
-class InstallSoapKey extends Command
+class InstallSoapKeyCommand extends Command
 {
     use EnvironmentKeyReplacementPattern;
 
-    protected $signature = 'install:soap {key?}';
+    protected $signature = 'sbuilder:soap-install {key?}';
 
     public function handle() : int
     {
