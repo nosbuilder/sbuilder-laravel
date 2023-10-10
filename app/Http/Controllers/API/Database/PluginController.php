@@ -18,7 +18,7 @@ class PluginController
      *
      *  Можно выбрать полный список элементов либо конкретный элемент по ID
      *
-     * @param  int  $pluginId ID модуля
+     * @param  int  $pluginId       ID модуля
      * @param  int|null  $elementId ID элемента
      *
      * @return \Illuminate\Http\JsonResponse
@@ -36,9 +36,9 @@ class PluginController
             }
         } catch (QueryException $exception) {
             $data = [
-                'error'  => $exception->getMessage(),
-                'code'   => $exception->getCode(),
-                'sql' => $exception->getSql(),
+                'error' => $exception->getMessage(),
+                'code'  => $exception->getCode(),
+                'sql'   => $exception->getSql(),
             ];
         }
 
