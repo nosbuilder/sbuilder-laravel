@@ -11,6 +11,8 @@
     "require": {
         "php": "^8.1",
         "ext-dom": "*",
+        "ext-pdo": "*",
+        "ext-soap": "*",
         "dedoc/scramble": "^0.8.4",
         "doctrine/dbal": "^3.7",
         "guzzlehttp/guzzle": "^7.2",
@@ -23,9 +25,7 @@
         "sentry/sentry-laravel": "^3.8",
         "spatie/laravel-sitemap": "^6.3",
         "symfony/css-selector": "^6.3",
-        "symfony/dom-crawler": "^6.3",
-        "ext-pdo": "*",
-        "ext-soap": "*"
+        "symfony/dom-crawler": "^6.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
