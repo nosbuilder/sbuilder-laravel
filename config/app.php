@@ -5,6 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'release_datetime' => env('RELEASE_DATETIME'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
