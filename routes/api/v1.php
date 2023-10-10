@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('db/plugins/{plugin_id}/{element_id?}', Database\PluginController::class)
-    ->where('pluginId', '[0-9]+')
-    ->where('elementId', '[0-9]+');
+Route::get('db/plugins/{pluginId}/{elementId?}', Database\PluginController::class)
+    ->whereNumber('pluginId')
+    ->whereNumber('elementId');
