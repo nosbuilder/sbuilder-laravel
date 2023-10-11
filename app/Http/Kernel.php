@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\AuthenticateOnceWithBasicAuth::class,
             \App\Http\Middleware\ForceJsonResponse::class,
+            \Spatie\HttpLogger\Middlewares\HttpLogger::class,
         ],
 
         'api-admin' => [

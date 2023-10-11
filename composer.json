@@ -23,6 +23,7 @@
         "league/flysystem-ftp": "^3.16",
         "predis/predis": "^2.2",
         "sentry/sentry-laravel": "^3.8",
+        "spatie/laravel-http-logger": "^1.10",
         "spatie/laravel-sitemap": "^6.3",
         "symfony/css-selector": "^6.3",
         "symfony/dom-crawler": "^6.3"
