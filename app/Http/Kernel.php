@@ -41,7 +41,6 @@ class Kernel extends HttpKernel
         'api' => [
             \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \DragonCode\LaravelHttpLogger\Http\Middleware\HttpLogMiddleware::class,
         ],
 
         'api-admin' => [
