@@ -16,6 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', static fn() : View => view('welcome'));
 
-Route::get('test', static function(\App\Repositories\SBuilderRepository $repository) {
 
-});
