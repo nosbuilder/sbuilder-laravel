@@ -6,6 +6,7 @@ namespace App\Console\Commands;
 
 use App\Traits\EnvironmentKeyReplacementPattern;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateReleaseDatetimeCommand extends Command
 {
@@ -15,7 +16,7 @@ class UpdateReleaseDatetimeCommand extends Command
 
     public function handle() : int
     {
-        $this->replaceKeyValue('RELEASE_DATETIME', 'app.release_datetime', date('d.m.Y_H:i'));
+        Storage::put('release_date', now()->isoFormat('LLLL'));
 
         return self::SUCCESS;
     }

@@ -41,12 +41,15 @@ class Kernel extends HttpKernel
         'api' => [
             \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \DragonCode\LaravelHttpLogger\Http\Middleware\HttpLogMiddleware::class,
+            \App\Http\Middleware\AuthenticateOnceWithBasicAuth::class,
+            \App\Http\Middleware\ForceJsonResponse::class,
+            \Spatie\HttpLogger\Middlewares\HttpLogger::class,
         ],
 
         'api-admin' => [
             \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\AuthenticateOnceWithBasicAuth::class,
         ],
     ];
 

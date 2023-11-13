@@ -96,6 +96,10 @@ class ExportFilesCommand extends Command
                 '{USERPWD}',
                 config('auth.basic_auth.user') . ':' . config('auth.basic_auth.pass'),
             ],
+            [
+                '{API_URL}',
+                config('app.url') . '/' . config('scramble.api_path'),
+            ],
         ];
 
         return str_replace(

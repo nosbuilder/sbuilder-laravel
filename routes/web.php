@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Integrations\GitHub\GitHubConnector;
+use App\Http\Integrations\GitHub\Requests\ListCommitsRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', static fn() : View => view('welcome'));
 
-Route::get('test', static function(\App\Repositories\SBuilderRepository $repository) {
+Route::get('github/last-commit', static function(GitHubConnector $connector) {
+    $response = $connector->send(new ListCommitsRequest);
 
+    if($response->ok()) {
+        return redirect($response->json('0.html_url'));
+    }
+
+    abort($response->status());
 });
