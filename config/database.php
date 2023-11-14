@@ -35,12 +35,17 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
+        'sqlite' => $sqlite = [
             'driver'                  => 'sqlite',
             'url'                     => env('DATABASE_URL'),
             'database'                => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix'                  => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+        'sqlite-production' => [
+            ...$sqlite,
+            'database' => database_path('production.sqlite'),
         ],
 
         'mysql' => $mysql = [
@@ -65,10 +70,10 @@ return [
 
         'mysql-sbuilder' => [
             ...$mysql,
-            'host'           => env('DB_SBUILDER_HOST', '127.0.0.1'),
-            'database'       => env('DB_SBUILDER_DATABASE', 'sbuilder'),
-            'username'       => env('DB_SBUILDER_USERNAME', 'sbuilder'),
-            'password'       => env('DB_SBUILDER_PASSWORD', 'sbuilder'),
+            'host'     => env('DB_SBUILDER_HOST', '127.0.0.1'),
+            'database' => env('DB_SBUILDER_DATABASE', 'sbuilder'),
+            'username' => env('DB_SBUILDER_USERNAME', 'sbuilder'),
+            'password' => env('DB_SBUILDER_PASSWORD', 'sbuilder'),
         ],
 
         'pgsql' => [
