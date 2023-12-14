@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Models\SBuilder;
+namespace App\Models\SBuilder\Plugins;
 
+use App\Models\SBuilder\SBuilder;
+use App\Models\SBuilder\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
@@ -36,6 +40,11 @@ abstract class SBuilderPlugin extends SBuilder
         );
     }
 
+    public function user() : HasOne
+    {
+        return $this->hasOne(User::class, 'p_user_id');
+    }
+
     public function getUserF(int $id) : mixed
     {
         return $this->getAttribute("user_f_$id");
@@ -51,6 +60,11 @@ abstract class SBuilderPlugin extends SBuilder
         return $this->getAttribute('p_title');
     }
 
+    public function getActive() : bool
+    {
+        return (bool) $this->getAttribute('p_active');
+    }
+
     public function getUrl() : mixed
     {
         return $this->getAttribute('p_url');
@@ -64,5 +78,13 @@ abstract class SBuilderPlugin extends SBuilder
     public function getExtId() : mixed
     {
         return $this->getAttribute('p_ext_id');
+    }
+
+    public function pActive() : Attribute
+    {
+        return Attribute::make(
+            get: static fn(int $value) : bool => (bool) $value,
+            set: static fn(mixed $value) : int => (int) (bool) $value
+        );
     }
 }
