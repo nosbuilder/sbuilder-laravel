@@ -21,7 +21,7 @@ class GetLastCommitCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Get hash from last commit in GitHub repository';
 
     /**
      * @param  \App\Http\Integrations\GitHub\GitHubConnector  $connector
