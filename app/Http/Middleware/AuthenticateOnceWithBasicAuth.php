@@ -19,6 +19,10 @@ class AuthenticateOnceWithBasicAuth
      */
     public function handle(Request $request, Closure $next)
     {
+        if($this->checkIp($request->ip())) {
+            return $next($request);
+        }
+
         if($this->checkReferrer($request->header('referer'))) {
             return $next($request);
         }
@@ -74,5 +78,22 @@ class AuthenticateOnceWithBasicAuth
         }
 
         return parse_url($url, PHP_URL_PATH) === '/docs/api';
+    }
+
+    private function checkIp(?string $ip) : bool
+    {
+        if($ip === null) {
+            return false;
+        }
+
+        if($ip === '127.0.0.1') {
+            return true;
+        }
+
+        return in_array(
+            needle: $ip,
+            haystack: array_map('trim', explode(',', config('auth.basic_auth.ip_addresses'))),
+            strict: true
+        );
     }
 }

@@ -113,8 +113,9 @@ return [
     'password_timeout' => 10800,
 
     'basic_auth' => [
-        'user' => (string) env('BASIC_AUTH_USER', 'test'),
-        'pass' => (string) env('BASIC_AUTH_PASS', 'test'),
+        'user'         => (string) env('BASIC_AUTH_USER', 'test'),
+        'pass'         => (string) env('BASIC_AUTH_PASS', 'test'),
+        'ip_addresses' => (string) env('BASIC_AUTH_IP'),
     ],
 
 ];
