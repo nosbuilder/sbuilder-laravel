@@ -19,6 +19,6 @@ abstract class SBuilder extends Model
 
     public function getIdent() : string
     {
-        return str_replace('sb', 'pl', $this->table);
+        return str_replace(['sb', 'plugins'], ['pl', 'plugin'], $this->table);
     }
 }
