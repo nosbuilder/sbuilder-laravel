@@ -25,7 +25,7 @@ abstract class SBuilderPlugin extends SBuilder
                 try {
                     $insert = DB::connection('mysql-sbuilder')
                         ->table('sb_catchanges')->insert([
-                            'el_id'          => $builder->getAttribute($builder->primaryKey),
+                            'el_id'          => $builder->getKey(),
                             'cat_ident'      => $builder->getIdent(),
                             'change_user_id' => config('sbuilder.user_id'),
                             'change_date'    => time(),
