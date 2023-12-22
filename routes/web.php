@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SystemLogController;
 use App\Http\Integrations\GitHub\GitHubConnector;
 use App\Http\Integrations\GitHub\Requests\ListCommitsRequest;
 use Illuminate\Contracts\View\View;
@@ -27,3 +28,5 @@ Route::get('github/last-commit', static function(GitHubConnector $connector) {
 
     abort($response->status());
 });
+
+Route::get('system-logs', SystemLogController::class);

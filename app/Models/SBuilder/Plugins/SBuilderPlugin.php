@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models\SBuilder\Plugins;
 
+use App\Enums\ChangesActionEnum;
+use App\Models\SBuilder\CatChange;
 use App\Models\SBuilder\SBuilder;
 use App\Models\SBuilder\User;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
@@ -23,19 +25,17 @@ abstract class SBuilderPlugin extends SBuilder
                 $insert = false;
 
                 try {
-                    $insert = DB::connection('mysql-sbuilder')
-                        ->table('sb_catchanges')->insert([
-                            'el_id'          => $builder->getKey(),
-                            'cat_ident'      => $builder->getIdent(),
-                            'change_user_id' => config('sbuilder.user_id'),
-                            'change_date'    => time(),
-                            'action'         => 'edit',
-                        ]);
+                    $insert = CatChange::query()->create([
+                        'el_id'     => $builder->getKey(),
+                        'cat_ident' => $builder->getIdent(),
+                        'action'    => ChangesActionEnum::Edit,
+                    ]);
+
                 } catch (Throwable $throwable) {
-                    Log::error($throwable->getMessage() . PHP_EOL . $throwable->getTraceAsString());
+                    Log::error($throwable->getMessage() . str_repeat(PHP_EOL, 2) . $throwable->getTraceAsString());
                 }
 
-                return $insert;
+                return (bool) $insert;
             }
         );
     }
@@ -43,6 +43,12 @@ abstract class SBuilderPlugin extends SBuilder
     public function user() : HasOne
     {
         return $this->hasOne(User::class, 'p_user_id');
+    }
+
+    public function changes() : HasMany
+    {
+        return $this->hasMany(CatChange::class, 'el_id')
+            ->where('cat_ident', $this->getIdent());
     }
 
     public function getUserF(int $id) : mixed

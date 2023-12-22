@@ -21,7 +21,7 @@ class User extends SBuilder
     {
         return $this
             ->hasMany(
-                related: Changes::class,
+                related: CatChange::class,
                 foreignKey: 'change_user_id'
             );
     }

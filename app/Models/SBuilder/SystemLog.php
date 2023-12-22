@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\SBuilder;
 
+use App\Models\SBuilder\SBuilder;
+use App\Models\SBuilder\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,7 +19,7 @@ class SystemLog extends SBuilder
     protected $primaryKey = 'sl_id';
 
     protected $casts = [
-        'sl_date' => 'timestamp',
+        'sl_date' => 'datetime',
     ];
 
     public function prunable() : Builder
