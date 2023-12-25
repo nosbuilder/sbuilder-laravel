@@ -17,6 +17,11 @@
             <canvas id="testChart" data-json="{{ $chart }}"></canvas>
         </div>
 
+        <form action="{{ route('sbuilder-logs') }}" method="GET" class="mb-5">
+            <input type="hidden" name="clear" value="1">
+            <button type="submit" class="btn btn-danger block">Очистить журнал</button>
+        </form>
+
         <ul class="list-group mb-5">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 Кол-во записей в журнале

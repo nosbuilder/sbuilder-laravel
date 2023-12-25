@@ -29,4 +29,5 @@ Route::get('github/last-commit', static function(GitHubConnector $connector) {
     abort($response->status());
 });
 
-Route::get('system-logs', SystemLogController::class);
+Route::get('sbuilder/logs', SystemLogController::class)
+    ->name('sbuilder-logs');
