@@ -1,7 +1,5 @@
 <?php
 
-$username = 'username';
-
 return [
 
     /*
@@ -134,9 +132,10 @@ return [
     'include_files' => [
         '*.log',
         '**/*.log',
-        "/var/log/nginx/$username/*.log",
-        "/var/log/supervisor/$username.log",
-        "/var/www/$username/log/*.log",
+        sprintf('/var/log/nginx/%s/*.log', env('OC_USER')),
+        sprintf('/var/log/supervisor/%s.log', env('OC_USER')),
+        sprintf('/var/www/$username/log/%s.log', env('OC_USER')),
+        sprintf('/var/www/$username/log/%s.log', env('OC_USER')),
     ],
 
     /*
