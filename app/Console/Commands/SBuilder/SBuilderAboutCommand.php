@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Console\Commands\SBuilder;
 
+use App\Http\Integrations\GitHub\GitHubConnector;
+use App\Http\Integrations\GitHub\Requests\GetRepository;
 use App\Services\StorageService;
 use App\SoapPlugin;
 use Illuminate\Console\Command;
@@ -16,6 +18,10 @@ class SBuilderAboutCommand extends Command
 {
     protected $signature = 'sbuilder:about';
 
+    /**
+     * @throws \Saloon\Exceptions\Request\FatalRequestException
+     * @throws \Saloon\Exceptions\Request\RequestException
+     */
     public function handle(StorageService $storageService) : int
     {
         $this->components->twoColumnDetail('URL:', config('sbuilder.url'), OutputInterface::VERBOSITY_QUIET);
@@ -31,6 +37,7 @@ class SBuilderAboutCommand extends Command
         $this->aboutFTP($storageService);
         $this->aboutDatabase();
         $this->aboutSoap();
+        $this->aboutGitHub();
 
         return self::SUCCESS;
     }
@@ -86,6 +93,27 @@ class SBuilderAboutCommand extends Command
             $this->components->twoColumnDetail('Status', '<fg=red>Failed</>');
 
             $this->components->twoColumnDetail('', "<fg=yellow>{$exception->getMessage()}</>");
+        }
+    }
+
+    /**
+     * @throws \Saloon\Exceptions\Request\FatalRequestException
+     * @throws \Saloon\Exceptions\Request\RequestException
+     * @return void
+     */
+    private function aboutGitHub() : void
+    {
+        $this->components->twoColumnDetail('<fg=green;options=bold>GitHub</>');
+        $this->components->twoColumnDetail('Owner', config('github.owner'));
+        $this->components->twoColumnDetail('Repository', config('github.repo'));
+        $this->components->twoColumnDetail('Token', config('github.token'));
+
+        $response = GitHubConnector::make()->send(new GetRepository);
+
+        if($response->ok()) {
+            $this->components->twoColumnDetail('Status', '<fg=green>Success</>');
+        } else {
+            $this->components->twoColumnDetail('Status', '<fg=red>Failed</>');
         }
     }
 }
