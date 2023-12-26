@@ -35,6 +35,8 @@ class GetLastCommitCommand extends Command
         $response = $connector->send(new ListCommitsRequest);
 
         if(!$response->ok()) {
+            $this->components->error('Error connect to GitHub!');
+
             return self::FAILURE;
         }
 
