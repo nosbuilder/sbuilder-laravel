@@ -51,6 +51,18 @@ abstract class SBuilderPlugin extends SBuilder
             ->where('cat_ident', $this->getIdent());
     }
 
+    public function category(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            Category::class,
+            CategoryLinks::class,
+            'link_el_id',
+            'cat_id',
+            'p_id',
+            'link_cat_id'
+        )->where('cat_ident', $this->getIdent());
+    }
+
     public function getUserF(int $id) : mixed
     {
         return $this->getAttribute("user_f_$id");
